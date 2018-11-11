@@ -1,5 +1,7 @@
 \documentclass[12pt,twoside]{article}
 \usepackage{jmlda}
+\usepackage{ tipa }
+\usepackage[normalem]{ulem}
 %\NOREVIEWERNOTES
 \title
     [Исследование зависимости качества распознавания онтологических объектов от глубины гипонимии.]
@@ -20,22 +22,33 @@
     {В данной работе исследуется задача определения онтологических сущностей в тексте. Собран датасет гипонимий с использованием ресурса Wordnet. Данный датасет применяется на различных текстовых корпусах для автоматической разметки слов. На данной разметке исследуется качества работы Named Entity Recognition алгоритмов. Одним из приложений результатов данной работы может быть добавление новых признаков слов в задачах Nature Language Processing для повышения качества
 
 \bigskip
-{В данной }
-\textbf{Ключевые слова}: \emph{Natural language processing (NLP), named entity recognition (NER)}.}
-\titleEng
-    {Spatial Signal Decoding for Brain Computer Interface.}
-\authorEng
-    {Dochkina V., Kuznetsov M., Rezyapkin V., Russkin A., Yarmoshik D.}
-%\organizationEng
-%    {$^1$Organization; $^2$Organization}
-\abstractEng
-    {In this paper, we study the dependences of the quality of recognition of ontological objects at various levels of concept hyponymy. It is necessary to collect data on the hyponymy (nesting of concepts) of objects using WordNet, to make automatic marking of ontological objects of texts of different domains for several levels of generalization of concepts, to conduct a series of experiments to determine the quality of recognition ontological objects for different levels of nesting. Such studies have not been done, ready datasets with hierarchical markup of objects are missing. Recognition of ontological objects at various levels of hyponymy can be used to produce additional features when solving various NLP (Natural language processing) tasks, as well as determining whether objects are a hyponym-hyperonym pair.
 
-\bigskip
-\textbf{Keywords}: \emph{Natural language processing (NLP), named entity recognition (NER)}.}
+\textbf{Ключевые слова}: \emph{Natural language processing (NLP), named entity recognition (NER)}.}
+
 \begin{document}
 \maketitle
+\section{1 Введение}
+    {Одним из крупных разделов машинного обучения является Nature Language Processing \--- обработка естественного языка. Диалоговые системы, машинный перевод, сентимент-анализ, моделирование языка и т.д. - лишь небольшая часть множества задач NLP.  
+Из этого множества задач выделяется подмножество, называемое как named entity recognition или распознавание именованных сущностей. Основной задачей является распознавание и разметка слов и словосочетаний, являющихся именами собственными в тексте. Например, текст ``Путин родился в 1957 году в Ленинграде''  можно разметить как ``$\text{[Путин]}_\textsc{\sout{вор}\textsc{политик}}$ родился в 1957 году в \text{[Ленинграде]}$_\textsc{город}$'' .
+
+Мы рассмотрим некоторое обобщение(?) данной задачи. А именно помимо именнованных сущностей будем распознавать онтологические объекты. Для примера возьмём слово "цветок". В задаче распознавания именновах сущностей мы не дадим ему никакую метку. В случае же работы с онтологическими объектами мы уже можем дать метку этому слову. Более того \--- не одну. Возьмём еще три слова: ``роза'', ``растение'' и ``живой организм''. Ясно, что роза является цветком, цветок \--- растением, а растение \--- живым организмом. Связи такого рода, частное-общее, называются гипонимией. Если слово A является частным слова B, то говорят, что A является гипонимомом B, и, в обратную сторону, B является гиперонимом А. Например, ``цветок'' \--- гипоним ``растения'' и гипероним ``розы''. 
+
+Таким образом, нашей задачей является разметка текста на различных уровнях гипонимии. Так мы получим несколько датасетов с разными разными разметками онтологических объектов.
+
+Задача является, актуальной потому что ... (результаты можно использовать для обучения других моделей)
+
+Датасет будет получен с помощью словаря гипонимий Wordnet. На полученных данных будем исследовано, как зависит качество распознавания онтологических объектов от глубины гипонимии. Кроме того, мы желаем, чтобы настроить модель так, чтобы она давала метки новым для неё словам. Это  возможно осуществить с помощью учёта контекста и поиска похожих слов. Например, можно давать аналогичные метки словам с почти равными векторными представлениями.
+    }
 \bigskip
+\section{2 Постановка задачи} 
+{
+1. Собрать данные по гипонимиям с Wordnet
+
+2. C помощью полученных данных для нескольких текстов сделать различные разметки по уровню гипонимии
+
+3. На размеченных данных провести несколько экспериментов с использованием sota алгоритмов. Сравнить и проанализировать полученные результаты.
+
+4. Найти несколько вариантов использования обученных моделей. }
 \bigskip
 \bigskip
 \bigskip

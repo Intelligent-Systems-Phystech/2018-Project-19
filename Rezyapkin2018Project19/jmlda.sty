@@ -19,7 +19,7 @@
 % Опция writetab: выводить tab-файл со списком статей
 \newif\ifwritetab\writetabfalse
 \DeclareOption{writetab}{\writetabtrue}
-
+% \usepackage[normalem]{ulem}
 % Опция writehtml: выводить html-файл со списком статей
 \newif\ifwritehtml\writehtmlfalse
 \DeclareOption{writehtml}{\writehtmltrue}
@@ -27,6 +27,7 @@
 \ProcessOptions
 
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[normalem]{ulem}
 %\RequirePackage[T2A]{fontenc}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
